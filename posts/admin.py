@@ -3,7 +3,7 @@ from posts.models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'title', 'image_header')
+    list_display = ('id', 'user', 'title', 'image_header', 'is_draft')
     search_fields = ('title', 'user__username', 'user__email')
     list_filter = ('created', 'modified')
 
