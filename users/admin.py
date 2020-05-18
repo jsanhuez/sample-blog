@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from users.models import Profile
 
+admin.site.site_header = 'Blog dashboard'
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
