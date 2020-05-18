@@ -2,11 +2,11 @@
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <h1 class="my-4">Simple Blog</h1>
+        <h1 class="my-4">Blog Sample</h1>
 
         {% for post in posts %}
             <div class="card mb-4">
-                <img class="card-img-top" src="{{ post.image_header.url }}" alt="Card image cap">
+                <img class="card-img-top" src="{{ post.image_header.url }}" alt="Card image cap" style="height: 300px;">
                 <div class="card-body">
                     <h2 class="card-title">
                         {{post.title}}
@@ -27,14 +27,34 @@
             </div>
         {% endfor %}
 
-        <ul class="pagination justify-content-center mb-4">
-            <li class="page-item">
-                <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-                <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-        </ul>
+        <div class="pagination justify-content-center mb-4">
+            <span class="step-links">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">&larr; Primero</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                        </li>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Último &rarr;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </span>
+        </div>
+        <div class="pagination justify-content-center mb-4">
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+        </div>
     </div>
 </div>
 {% endblock %}
