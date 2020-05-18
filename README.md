@@ -16,4 +16,4 @@ $ python
 
 ## Autor
 
-* **Juan Sanhueza Rodríguez**
+* **Juan Sanhueza Rodríguez** - [Juan SR](https://github.com/jsanhuez)
