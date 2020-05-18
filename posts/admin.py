@@ -6,6 +6,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'title', 'image_header', 'created', 'modified', 'is_draft')
     search_fields = ('title', 'user__username', 'user__email')
     list_filter = ('created', 'modified')
+    actions = ('set_posts_to_published', )
 
     def get_form(self, request, obj=None, **kwargs):
         self.exclude = ('url', )
@@ -13,3 +14,7 @@ class PostAdmin(admin.ModelAdmin):
         form.base_fields['user'].initial = request.user
         form.base_fields['profile'].initial = request.user.profile
         return form
+
+    def set_posts_to_published(self, request, queryset):
+        count = queryset.update(is_draft=False)
+        self.message_user(request, '{} posts have been published successfully'.format(count))
