@@ -19,6 +19,10 @@ from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
 
+admin.site.site_header = 'Blog admin'
+admin.site.site_title = 'Blog admin'
+admin.site.index_title = 'Blog administration'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('posts.urls', 'posts'), namespace='posts')),
