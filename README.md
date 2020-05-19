@@ -1,30 +1,132 @@
 # Sample blog - blog de ejemplo
 
-## Requisitos
+Este repositorio contiene una aplicación web construida con Django web framework. Es un blog de ejemplo.
 
-Este projecto está desarrollado en Django.
+El proyecto tiene los siguientes módulos:
 
-* [Django](https://www.djangoproject.com/)
+* Blog
+* Registro de usuarios
+* Panel Admin
+
+## Antes de comenzar
+Para ejecutar sample-blog debes tener instalar Python3, pip. Esto varía dependiendo tu sistema operativo.
+
+Instalados python3 y pip, instalar Django:
+
+```
+pip install Django
+```
+
+## Comenzar
+
+Clona el proyecto
+
+```
+git clone https://github.com/jsanhuez/sample-blog.git
+```
+
+Ve a la raíz del proyecto
+
+```
+cd sample-blog
+```
+
+## Preparar entorno virtual
+Para instalar las librerías que el proyecto utiliza, crea un entorno virtual
+
+```
+python3 -m venv env
+```
+
+Luego, activar el entorno.
+
+```
+source env/bin/activate
+```
+
+Verás el prefijo (env) en la Terminal.
+
+```
+(env) ~/sample-blog$
+```
+
+## Instalar librerías
+A continuación, ejecutar
+
+```
+pip install -r requirements.txt
+```
+
+Si queremos ver las librerías que tenemos instaladas podemos lanzar el siguiente comando:
+
+```
+pip freeze
+```
+
+## Crear base de datos
+Este proyecto fue construido utilizando el motor MySQL. Pueden utilizarse otras, como PostgreSQL o SQLite.
+
+
+```
+$ mysql -u root -p
+mysql> CREATE DATABASE sample_blog;
+mysql> \q
+
+```
+
+Aplicar migrations para crear el esquema de base de datos:
+```
+python manage.py makemigrations
+```
+
+Luego,
+
+```
+python manage.py migrate
+```
+
+## Cargar datos
+
+```
+python manage.py loaddata db-data.json
+```
+
+Crear super usuario para ingresar al panel de admin
+
+```
+python manage.py createsuperuser
+```
+
+Con los siguientes datos
+
+```
+User: admin
+Pass: 4dm1n%&/
+```
 
 ## Ejecutar proyecto
 
+Ejecutar en servidor local:
 
 ```
-$ python 
+python manage.py runserver
 ```
 
+En un navegador ir a 
 
-# A collapsible section containing code
-<details>
-  <summary>Click to expand!</summary>
-  
-  ```javascript
-    function whatIsLove() {
-      console.log('Baby Don't hurt me. Don't hurt me');
-      return 'No more';
-    }
-  ```
-</details>
+```
+http://127.0.0.1:8000
+```
+
+El panel de administración está en la url
+
+```
+http://127.0.0.1:8000/admin
+```
+
+## Construido con
+* [Python](https://www.python.org/)
+* [Django](https://www.djangoproject.com/)
 
 ## Autor
 
