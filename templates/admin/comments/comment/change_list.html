@@ -1,0 +1,100 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+    const randomColorGenerator = () => 
+        ('#' + (Math.random().toString(16) + '0000000').slice(2, 8));
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: true,
+        legend: {
+            position: 'left'
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const ctx = document.getElementById("comment-chart");
+        const chartData = {{ chart_data | safe }};
+        const labels = [];
+        const data = [];
+        const color = [];
+
+        for (let i = 0; i < chartData.length; ++i) {
+            labels.push(chartData[i].post__title.slice(0,25) + '...');
+            data.push(chartData[i].y);
+            color.push(randomColorGenerator());
+        }
+
+        const lineChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: color
+                }],
+            },
+            options: {
+                ...options,
+                title: {
+                    display: true,
+                    text: 'Número de comentarios por Publicación'
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById("user-comment-chart");
+        const userComments = {{ user_comments | safe }};
+        const labels2 = [];
+        const data2 = [];
+        const color2 = [];
+
+        for (let i = 0; i < userComments.length; ++i) {
+            labels2.push(userComments[i].user__username);
+            data2.push(userComments[i].y);
+            color2.push(randomColorGenerator());
+        }
+
+        const lineChart2 = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: labels2,
+                datasets: [{
+                    data: data2,
+                    backgroundColor: color2
+                }],
+            },
+            options: {
+                ...options,
+                title: {
+                    display: true,
+                    text: 'Número de comentarios por Usuario'
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Render our chart -->
+<div>
+    <div style="width: 40%; display: inline-block;">
+        <canvas style="width: 30%;" id="comment-chart"></canvas>
+    </div>
+    <div style="width: 40%; display: inline-block;">
+        <canvas style="margin-left: 30px; width: 30%;" id="user-comment-chart"></canvas>
+    </div>
+</div>
+<!-- Render the rest of the ChangeList view -->
+{{ block.super }}
+{% endblock %}
