@@ -23,14 +23,14 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         const ctx = document.getElementById("comment-chart");
-        const chartData = {{ chart_data | safe }};
+        const postsComments = {{ posts_comments | safe }};
         const labels = [];
         const data = [];
         const color = [];
 
-        for (let i = 0; i < chartData.length; ++i) {
-            labels.push(chartData[i].post__title.slice(0,25) + '...');
-            data.push(chartData[i].y);
+        for (let i = 0; i < postsComments.length; ++i) {
+            labels.push(postsComments[i].post__title.slice(0,25) + '...');
+            data.push(postsComments[i].y);
             color.push(randomColorGenerator());
         }
 
