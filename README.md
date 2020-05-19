@@ -70,11 +70,20 @@ Este proyecto fue construido utilizando el motor MySQL. Pueden utilizarse otras,
 ```
 $ mysql -u root -p
 mysql> CREATE DATABASE sample_blog;
+mysql> CREATE USER sampleblog@localhost IDENTIFIED BY 'sample&blog/pass';
+mysql> GRANT ALL PRIVILEGES ON sample_blog.* TO <nombreusuario>@localhost;
+mysql> FLUSH PRIVILEGES;
 mysql> \q
+```
 
+Agregar archivo .env en carpeta sample_blog
+
+```
+:~/sample-blog$ cd sample_blog/
 ```
 
 Aplicar migrations para crear el esquema de base de datos:
+
 ```
 python manage.py makemigrations
 ```
@@ -89,19 +98,6 @@ python manage.py migrate
 
 ```
 python manage.py loaddata db-data.json
-```
-
-Crear super usuario para ingresar al panel de admin
-
-```
-python manage.py createsuperuser
-```
-
-Con los siguientes datos
-
-```
-User: admin
-Pass: 4dm1n%&/
 ```
 
 ## Ejecutar proyecto
@@ -122,6 +118,13 @@ El panel de administración está en la url
 
 ```
 http://127.0.0.1:8000/admin
+```
+
+Con los siguientes datos
+
+```
+User: admin
+Pass: 4dm1n%&/
 ```
 
 ## Construido con
