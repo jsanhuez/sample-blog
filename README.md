@@ -71,7 +71,7 @@ Este proyecto fue construido utilizando el motor MySQL. Pueden utilizarse otras,
 $ mysql -u root -p
 mysql> CREATE DATABASE sample_blog;
 mysql> CREATE USER sampleblog@localhost IDENTIFIED BY 'sample&blog/pass';
-mysql> GRANT ALL PRIVILEGES ON sample_blog.* TO <nombreusuario>@localhost;
+mysql> GRANT ALL PRIVILEGES ON sample_blog.* TO sampleblog@localhost;
 mysql> FLUSH PRIVILEGES;
 mysql> \q
 ```
