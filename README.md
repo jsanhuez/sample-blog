@@ -9,7 +9,7 @@ El proyecto tiene los siguientes módulos:
 * Panel Admin
 
 ## Antes de comenzar
-Para ejecutar sample-blog debes tener instalar Python3, pip. Esto varía dependiendo tu sistema operativo.
+Para ejecutar sample-blog debes tener instalar Python3, pip. Esto varía dependiendo de tu sistema operativo.
 
 Instalados python3 y pip, instalar Django:
 
