@@ -117,7 +117,7 @@ Guardar archivo y reintentar Aplicar migrations
 
 
 ```
-python manage.py makemigration
+python manage.py makemigrations
 ```
 </p>
 </details>
