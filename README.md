@@ -7,7 +7,7 @@ El proyecto tiene los siguientes módulos:
 * Blog
 * Registro de usuarios
 * Panel Admin
-* Analísis de datos base
+* Análisis de datos base
 
 ## Antes de comenzar
 Para ejecutar sample-blog debes tener instalar Python3, pip. Esto varía dependiendo de tu sistema operativo.
