@@ -1,0 +1,70 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+    const randomColorGenerator = () => 
+        ('#' + (Math.random().toString(16) + '0000000').slice(2, 8));
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: true,
+        legend: {
+            position: 'top'
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0
+                }
+            }]
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const ctx = document.getElementById("comment-chart");
+        const userNumPost = {{ user_num_post | safe }};
+        console.log(userNumPost)
+        const labels = [];
+        const data = [];
+        const color = [];
+
+        for (let i = 0; i < userNumPost.length; ++i) {
+            labels.push(userNumPost[i].user__username);
+            data.push(userNumPost[i].y);
+            color.push(randomColorGenerator());
+        }
+
+        const densityData = {
+            label: 'Publicaciones vistas',
+            data: data,
+            backgroundColor: color,
+        };
+        
+        const barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [densityData]
+            },
+            options: options
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Render our chart -->
+<div style="width: 40%; display: inline-block;">
+    <canvas style="width: 30%;" id="comment-chart"></canvas>
+</div>
+<!-- Render the rest of the ChangeList view -->
+{{ block.super }}
+{% endblock %}
