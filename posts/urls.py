@@ -3,6 +3,9 @@ Posts URLs.
 """
 
 from django.urls import path
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+
 from posts import views
 
 urlpatterns = [
@@ -13,7 +16,7 @@ urlpatterns = [
     ),
     path(
         route='posts/<slug:url>/',
-        view=views.PostDetailView.as_view(),
+        view=login_required(views.PostDetailView.as_view()),
         name='detail'
     ),
     path(

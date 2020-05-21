@@ -3,6 +3,7 @@ from django.views.generic import DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
+from analytics.mixins import ObjectViewedMixin
 from posts.models import Post
 from categories.models import Category
 from comments.models import Comment
@@ -23,7 +24,7 @@ class PostsFeedView(ListView):
         context['categories'] = Category.objects.all()
         return context
 
-class PostDetailView(DetailView):
+class PostDetailView(ObjectViewedMixin, DetailView):
     """ Detail post. """
     template_name = 'posts/detail.html'
     model = Post

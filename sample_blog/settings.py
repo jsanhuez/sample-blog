@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'categories',
     'comments',
     'bootstrap4',
+    'analytics',
 ]
 
 MIDDLEWARE = [
