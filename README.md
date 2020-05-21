@@ -89,34 +89,6 @@ Aplicar migrations para crear el esquema de base de datos:
 python manage.py makemigrations
 ```
 
-En caso de presentar el error al hacer la migración 
-
-```
-error: mysqlclient 1.3.13 or newer is required; you have 0.9.3
-```
-
-En el archivo operations.py dentro del directorio similar a:
-
-sample-blog/env/lib/python3.6/site-packages/django/db/backends/mysql
-
-Buscar
-
-```
-query = query.decode(errors='replace')
-```
-
-y reemplazar decode to encode
-
-```
-query = query.encode(errors='replace')
-```
-
-Guardar archivo y reintentar Aplicar migrations
-
-```
-python manage.py makemigrations
-```
-
 <details>
 <summary>*En caso de tener el error al hacer la migración utilizando mysql:</summary>
 <p>
@@ -149,6 +121,7 @@ python manage.py makemigration
 ```
 </p>
 </details>
+
 
 Luego,
 
