@@ -77,7 +77,7 @@ mysql> FLUSH PRIVILEGES;
 mysql> \q
 ```
 
-Agregar archivo .env en carpeta sample_blog
+Añadir las variables de entorno en sample_blog/.env.example y renombrarlo a .env
 
 ```
 :~/sample-blog$ cd sample_blog/
