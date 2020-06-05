@@ -8,8 +8,6 @@ from django.shortcuts import redirect
 from analytics.signals import object_viewed_signal
 from analytics.utils import get_client_ip
 
-# User = settings.AUTH_USER_MODEL
-
 class ObjectViewed(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT) # User instance
     ip_address = models.CharField(max_length=220, blank=True, null=True)
